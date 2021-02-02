@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einloggen - Admin</title>
+    <link rel="stylesheet" href="klausurstyling.css">
+</head>
+<body>
+    <h1 class="headline"> Login</h1>
+    <form action="" method="get">
+    <div>
+          <label for="email">E-mail</label>
+          <input type="text" placeholder="Enter E-mail" id="email" name="email" required>
+            <label for="password">Passwort</label>
+            <input type="password" placeholder="Enter Password" id="password" name="password" required>
+    </div>
+    <button type="submit" id="submit-login" class="serverabfrage">Login</button>
+    </form>
+    <p id="message"></p>
+    <script src="client-js/config.js"></script>
+    <script src="client-js/login-admin.js"></script>
+</body>
+</html>

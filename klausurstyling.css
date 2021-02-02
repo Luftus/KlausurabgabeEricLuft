@@ -1,0 +1,35 @@
+#item-list {
+    display: block;
+    justify-content: space-around;
+    background-color: green;
+  }
+
+#item-list > div {
+    background-color: #f1f1f1;
+    float:left;
+    width: 400px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+  .picture{
+      width:350px;
+      height:350px;
+  }
+  .about{
+      font-size:15px;
+  }
+  .headline{
+      font-size: 100px;
+      text-align:center;
+      background-color:greenyellow;
+  }
+  .loginweiterleitung{
+    font-size: 100px;
+      text-align:center;
+  }
+  .bestaetigung{
+      font-size: 100px;
+      text-align: center;
+  }
