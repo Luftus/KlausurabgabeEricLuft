@@ -1,4 +1,4 @@
-let main_url = "http://localhost:8100";
+let main_url = "https://ericluftklausurabgabe.herokuapp.com";
 
 function showError(message: string){
     let field = document.getElementById('message');
