@@ -1,19 +1,10 @@
-let main_url = "https://ericluftklausurabgabe.herokuapp.com";
+let main_url = "https://ericluftklausurabgabe.herokuapp.com"; // URL
 
 function showError(message: string){
-    let field = document.getElementById('message');
+    let field = document.getElementById('message'); //Feldauslesung 
     if(!field){
         return;
     }
     field.setAttribute('style', 'color: red');
-    field.innerHTML = message;
-}
-
-function showSuccess(message: string){
-    let field = document.getElementById('message');
-    if(!field){
-        return;
-    }
-    field.setAttribute('style', 'color: green');
-    field.innerHTML = message;
+    field.innerHTML = message; // Errorfunktion 
 }

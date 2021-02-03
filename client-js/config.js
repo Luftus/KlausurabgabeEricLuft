@@ -1,5 +1,5 @@
 "use strict";
-var main_url = "http://localhost:8100";
+var main_url = "https://ericluftklausurabgabe.herokuapp.com";
 function showError(message) {
     var field = document.getElementById('message');
     if (!field) {

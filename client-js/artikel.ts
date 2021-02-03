@@ -9,7 +9,7 @@ interface Item{
 
 
 async function start(){
-    let itemRequest = await fetch(main_url+'/Items');
+    let itemRequest = await fetch(main_url+'/Items'); //items werden gefetcht 
     let itemResponse = await itemRequest.json();
     let itemListDiv = document.getElementById('item-list');
     if(!itemListDiv){
@@ -26,7 +26,7 @@ async function start(){
             if(!itemListDiv){
                 return;
             }
-            itemListDiv.appendChild(createItemElement(item));
+            itemListDiv.appendChild(createItemElement(item)); //erzeugung der Liste wie in der asta.ts 
         });
     }
 }
@@ -60,9 +60,9 @@ function createItemElement(item: Item): HTMLElement{
 
     let btn;
     if(item.status === "frei"){
-        btn = document.createElement('button');
+        btn = document.createElement('button'); //Logik umgekehrt wie in der asta.ts der Button soll NUR angezeigt werden wenn dieser auch frei ist 
         btn.innerHTML = "Reservieren!";
-        btn.addEventListener('click', () => reserve(item.name, item.gebuehren));
+        btn.addEventListener('click', () => reserve(item.name, item.gebuehren)); //aufrufen der reserve funktion
     }
 
     mainDiv.appendChild(img);
@@ -80,7 +80,7 @@ function createItemElement(item: Item): HTMLElement{
 async function reserve(itemName: string, gebuehren: string){
     localStorage.setItem('toReserve', itemName);
     localStorage.setItem('cost', gebuehren);
-    window.location.assign('Reservieren.html');
+    window.location.assign('Reservieren.html'); //Schlicht eine weiterleitung der Daten auf die Reservieren.html, parameter werden gespeichert 
 }
 
 

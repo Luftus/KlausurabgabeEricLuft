@@ -10,23 +10,23 @@ if(submitReserve){
 
 
 function startReserve(){
-    let itemName = localStorage.getItem('toReserve');
+    let itemName = localStorage.getItem('toReserve'); //Daten werden aus dem local Storage rausgelesen 
     if(!itemName || !pItemName || !emailField || !nameFeld || !submitReserve){
         return;
     }
-    pItemName.innerHTML = itemName;
+    pItemName.innerHTML = itemName; // item wird ins Html reingeschrieben 
 
 
 }
 startReserve();
 
 
-async function reserveItem(evt: MouseEvent){
+async function reserveItem(evt: MouseEvent){ //Wenn man auf den Knopf drückt 
     evt.preventDefault();
 
-    let name = nameFeld.value;
-    let email = emailField.value;
-    let itemName = localStorage.getItem('toReserve');
+    let name = nameFeld.value; // Name wird aus dem Feld rausgelesen 
+    let email = emailField.value; //Email wird aus dem Feld rausgelesen
+    let itemName = localStorage.getItem('toReserve');// itemName steht im local drinnen 
     if(!name || !email || !itemName){
         showError("Es wurden nicht alle benötigten Felder ausgefüllt.");
         return;
@@ -35,14 +35,14 @@ async function reserveItem(evt: MouseEvent){
     params.append('name', name);
     params.append('email', email);
     params.append('itemName', itemName);
-    let reserveRequest = await fetch(main_url+'/ReserveItem?'+params.toString());
+    let reserveRequest = await fetch(main_url+'/ReserveItem?'+params.toString()); //fetch aus ReserveItem 
     let reserveResponse= await reserveRequest.json();
     if(reserveResponse.error){
         showError("Der Gegenstand konnte nicht reserviert werden.");
     }
     else{
         localStorage.setItem('name', name);
-        window.location.assign('Reservierungsbestaetigung.html');
+        window.location.assign('Reservierungsbestaetigung.html'); //Zur bestellbestätigung 
     }
 }
 

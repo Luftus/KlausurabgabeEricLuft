@@ -7,40 +7,40 @@ interface Item{
 }
 
 
-async function startAdmin(){
+async function startAdmin(){ // Eingeloggter User wird ausgelesen 
     let loggedIn = localStorage.getItem('loggedIn');
     if(!loggedIn){
         window.location.assign('../LoginAdmin.html');
     }
     let itemRequest = await fetch(main_url+'/Items');
-    let itemResponse = await itemRequest.json();
-    let itemListDiv = document.getElementById('item-list');
+    let itemResponse = await itemRequest.json(); //Request und holen uns die Items 
+    let itemListDiv = document.getElementById('item-list'); //Div rausholen indem alle items drinnen liegen 
     if(!itemListDiv){
         return;
     }
-    itemListDiv.innerHTML = '';
+    itemListDiv.innerHTML = ''; // Div wird geleert 
 
     if(itemResponse.error){
         showError("Die Gegenstände konnten nicht abgerufen werden. Sie werden in 3 Sekunden weitergeleitet..");
         setTimeout(() =>{
             window.location.assign('../LoginAdmin.html');
-        }, 3000);        
+        }, 3000); //Errormeldung, in 3 Sekunden versucht die Seite dann neu zu laden      
     }
     else{
         let i = 0;
-        itemResponse.items.forEach((item: Item) =>{
+        itemResponse.items.forEach((item: Item) =>{ //Alle items werden durchgegangen 
             if(!itemListDiv){
                 return;
             }
-            itemListDiv.appendChild(createItemElementAdmin(item));
+            itemListDiv.appendChild(createItemElementAdmin(item)); //appenden an das itemlistdiv , aufrufen von createItemElementAdmin 
         });
     }
 }
 startAdmin();
 
 
-function createItemElementAdmin(item: Item): HTMLElement{
-    let mainDiv = document.createElement('div');
+function createItemElementAdmin(item: Item): HTMLElement{ //Hier wird ein Item weitergegeben, es erzeugt dann pro Item 
+    let mainDiv = document.createElement('div'); //mainDiv wird erzeugt 
     mainDiv.setAttribute('class', 'artikel');
 
     let img = document.createElement('img');
@@ -68,22 +68,22 @@ function createItemElementAdmin(item: Item): HTMLElement{
     if(item.status === "reserviert"){
         btn = document.createElement('button');
         btn.innerHTML = "Auf ausgeliehen setzen.";
-        btn.addEventListener('click', () => changeStatus(item.name));
+        btn.addEventListener('click', () => changeStatus(item.name)); //click listener für den Admin um den reservierungsstatus von reserviert auf ausgeliehen zu setzen
     }
 
     if(item.status=== "ausgeliehen"){
         btn = document.createElement('button');
         btn.innerHTML = "Auf frei setzen.";
-        btn.addEventListener('click', () => changeStatus(item.name));
+        btn.addEventListener('click', () => changeStatus(item.name)); //click listener für den Admin um den reservierungsstatus von ausgeliehen auf frei zu setzen
     }
 
-    mainDiv.appendChild(img);
+    mainDiv.appendChild(img); //Von Zeile 43 werden an das mainDiv angehängt, img itemname descr etc.
     mainDiv.appendChild(pItemName);
     mainDiv.appendChild(pDescription);
     mainDiv.appendChild(pItemStatus);
     mainDiv.appendChild(pReservedBy);
     if(btn){
-        mainDiv.appendChild(btn);
+        mainDiv.appendChild(btn); //Buttonelement wird angehängt 
     }
 
     return mainDiv;
@@ -91,15 +91,15 @@ function createItemElementAdmin(item: Item): HTMLElement{
 
 async function changeStatus(itemName: string){
     let params = new URLSearchParams();
-    params.append('itemName', itemName);
+    params.append('itemName', itemName); //Itemname wird übergeben, Beispielsweise kamera 
 
     let itemRequest = await fetch(main_url+'/ChangeItemStatus?'+params.toString());
-    let itemResponse = await itemRequest.json();
+    let itemResponse = await itemRequest.json(); //Kamera wird beispielsweise gefetcht 
     if(itemResponse.error){
         showError("Der Gegenstand konnte nicht bearbeitet werden.");
     }
     else{
-        //re render page
+        //gegenstand konnte bearbeitet werden, wir springen wieder an den Anfang bei startAdmin und die Seite wird neu gerendert.
         startAdmin();
     }
 }
