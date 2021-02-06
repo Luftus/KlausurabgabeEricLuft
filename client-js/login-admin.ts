@@ -4,18 +4,18 @@ let passwordFeld = document.getElementById('password') as HTMLInputElement;
 let submitButton = document.getElementById('submit-login');
 
 if(submitButton){
-    submitButton.addEventListener('click', submitAdminLogin);
+    submitButton.addEventListener('click', adminLogin);
 }
 
 
-async function submitAdminLogin(evt: MouseEvent){
+async function adminLogin(evt: MouseEvent){
     evt.preventDefault();
 
     let mail = emailFeld.value;
     let password = passwordFeld.value; //parameter auslesen 
 
     if(!mail || !password){
-        showError("Es wurden nicht alle Pflichtfelder ausgefüllt.");
+        errorAnzeigen("Es wurden nicht alle Pflichtfelder ausgefüllt.");
         return;
     }
     let params = new URLSearchParams();
@@ -24,7 +24,7 @@ async function submitAdminLogin(evt: MouseEvent){
     let request = await fetch(main_url+'/Login?'+params.toString()); //Request machen 
     let response = await request.json();
     if(response.error){
-        showError("Benutzername oder Password wurden nicht korrekt eingegeben.");
+        errorAnzeigen("Benutzername oder Password wurden nicht korrekt eingegeben.");
     }
     else{
         //Speicherung im local Storage, dadurch kann man auch in der LoginAdmin.html besipielsweise drauf schauen 

@@ -28,7 +28,7 @@ async function reserveItem(evt: MouseEvent){ //Wenn man auf den Knopf drückt
     let email = emailField.value; //Email wird aus dem Feld rausgelesen
     let itemName = localStorage.getItem('toReserve');// itemName steht im local drinnen 
     if(!name || !email || !itemName){
-        showError("Es wurden nicht alle benötigten Felder ausgefüllt.");
+       errorAnzeigen("Es wurden nicht alle benötigten Felder ausgefüllt.");
         return;
     }
     let params = new URLSearchParams();
@@ -38,7 +38,7 @@ async function reserveItem(evt: MouseEvent){ //Wenn man auf den Knopf drückt
     let reserveRequest = await fetch(main_url+'/ReserveItem?'+params.toString()); //fetch aus ReserveItem 
     let reserveResponse= await reserveRequest.json();
     if(reserveResponse.error){
-        showError("Der Gegenstand konnte nicht reserviert werden.");
+       errorAnzeigen("Der Gegenstand konnte nicht reserviert werden.");
     }
     else{
         localStorage.setItem('name', name);

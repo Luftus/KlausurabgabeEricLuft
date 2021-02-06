@@ -21,7 +21,7 @@ async function startAdmin(){ // Eingeloggter User wird ausgelesen
     itemListDiv.innerHTML = ''; // Div wird geleert 
 
     if(itemResponse.error){
-        showError("Die Gegenstände konnten nicht abgerufen werden. Sie werden in 3 Sekunden weitergeleitet..");
+        errorAnzeigen("Die Gegenstände konnten nicht abgerufen werden. Sie werden in 3 Sekunden weitergeleitet..");
         setTimeout(() =>{
             window.location.assign('../LoginAdmin.html');
         }, 3000); //Errormeldung, in 3 Sekunden versucht die Seite dann neu zu laden      
@@ -96,7 +96,7 @@ async function changeStatus(itemName: string){
     let itemRequest = await fetch(main_url+'/ChangeItemStatus?'+params.toString());
     let itemResponse = await itemRequest.json(); //Kamera wird beispielsweise gefetcht 
     if(itemResponse.error){
-        showError("Der Gegenstand konnte nicht bearbeitet werden.");
+        errorAnzeigen("Der Gegenstand konnte nicht bearbeitet werden.");
     }
     else{
         //gegenstand konnte bearbeitet werden, wir springen wieder an den Anfang bei startAdmin und die Seite wird neu gerendert.

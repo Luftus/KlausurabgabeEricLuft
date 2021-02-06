@@ -18,7 +18,7 @@ async function start(){
     itemListDiv.innerHTML = '';
 
     if(itemResponse.error){
-        showError("Die Gegenstände konnten nicht abgerufen werden.");
+        errorAnzeigen("Die Gegenstände konnten nicht abgerufen werden.");
     }
     else{
         let i = 0;
