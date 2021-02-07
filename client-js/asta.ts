@@ -21,7 +21,7 @@ async function startAdmin(){ // Eingeloggter User wird ausgelesen
     itemListDiv.innerHTML = ''; // Div wird geleert 
 
     if(itemResponse.error){
-        errorAnzeigen("Die Gegenstände konnten nicht abgerufen werden. Sie werden in 3 Sekunden weitergeleitet..");
+        errorAnzeigen("Die Gegenstände konnten nicht geladen werden. Sie werden in 3 Sekunden weitergeleitet..");
         setTimeout(() =>{
             window.location.assign('../LoginAdmin.html');
         }, 3000); //Errormeldung, in 3 Sekunden versucht die Seite dann neu zu laden      
